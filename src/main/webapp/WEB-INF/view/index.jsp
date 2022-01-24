@@ -1,17 +1,38 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Accident</title>
 </head>
 
 <body class="container">
+<nav>
+    <div class="nav-wrapper container">
+        <a class="brand-logo">Accident</a>
+    </div>
+</nav>
+
+<h2>Нарушения</h2>
+
+<br><br>
+
 <table class="table">
     <thead>
     <tr>
         <th>#</th>
+        <th>Нарушение</th>
+        <th>Статья</th>
         <th>Описание</th>
+        <th>Адрес</th>
     </tr>
     </thead>
     <tbody>
@@ -19,7 +40,10 @@
     <c:forEach items="${itemsList}" var="item" varStatus="count">
         <tr>
             <td><c:out value="${count.count}"/></td>
-            <td><c:out value="${item}"/></td>
+            <td><c:out value="${item.name}"/></td>
+            <td><c:out value="${item.article}"/></td>
+            <td><c:out value="${item.text}"/></td>
+            <td><c:out value="${item.address}"/></td>
         </tr>
     </c:forEach>
 
