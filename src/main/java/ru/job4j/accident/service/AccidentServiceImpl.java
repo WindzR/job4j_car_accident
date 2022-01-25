@@ -17,4 +17,14 @@ public class AccidentServiceImpl implements AccidentService {
     public List<Accident> getAllAccidents() {
         return accidentMem.getAllAccidents();
     }
+
+    @Override
+    public void addAccident(Accident accident) {
+        accidentMem.addAccident(accident);
+    }
+
+    @Override
+    public Accident accidentById(int id) {
+        return accidentMem.findAccidentById(id);
+    }
 }

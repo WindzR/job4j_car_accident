@@ -9,9 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem {
 
-    private final AtomicInteger count = new AtomicInteger(0);
+    private final AtomicInteger count = new AtomicInteger(1);
 
-    private Map<Integer, Accident> accidents = new HashMap<>();
+    private final Map<Integer, Accident> accidents = new HashMap<>();
 
     public AccidentMem() {
     }
@@ -32,10 +32,15 @@ public class AccidentMem {
     }
 
     public void addAccident(Accident accident) {
-       accidents.put(count.incrementAndGet(), accident);
+        accident.setId(count.getAndIncrement());
+        accidents.put(accident.getId(), accident);
     }
 
     public List<Accident> getAllAccidents() {
         return new ArrayList<>(accidents.values());
+    }
+
+    public Accident findAccidentById(int id) {
+        return accidents.get(id);
     }
 }

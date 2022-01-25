@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -23,7 +24,10 @@
 
 <h2>Нарушения</h2>
 
-<br><br>
+<br>
+<a href="<c:url value='/create'/>">Добавить инцидент</a>
+<br>
+<br>
 
 <table class="table">
     <thead>
@@ -33,17 +37,29 @@
         <th>Статья</th>
         <th>Описание</th>
         <th>Адрес</th>
+        <th>Обновить/Удалить</th>
     </tr>
     </thead>
     <tbody>
 
     <c:forEach items="${itemsList}" var="item" varStatus="count">
+
+        <c:url var="updateButton" value='/edit'>
+            <c:param name="accId" value="${item.id}"/>
+        </c:url>
+        
         <tr>
             <td><c:out value="${count.count}"/></td>
             <td><c:out value="${item.name}"/></td>
             <td><c:out value="${item.article}"/></td>
             <td><c:out value="${item.text}"/></td>
-            <td><c:out value="${item.address}"/></td>
+            <td>
+                <c:out value="${item.address}"/>
+            </td>
+            <td>
+                <input type="button" value="Update"
+                       onclick="window.location.href = '${updateButton}'">
+            </td>
         </tr>
     </c:forEach>
 

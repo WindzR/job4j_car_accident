@@ -11,13 +11,18 @@ import java.util.List;
 @Controller
 public class IndexControl {
 
+    private final AccidentServiceImpl accidents;
+
+    public IndexControl(AccidentServiceImpl accidents) {
+        this.accidents = accidents;
+    }
+
     @RequestMapping("/index")
     public String index(Model model) {
         System.out.println("****Working controller Index****");
-        AccidentServiceImpl accidentService = new AccidentServiceImpl();
-        List<Accident> accidents = accidentService.getAllAccidents();
-        System.out.println(accidents);
-        model.addAttribute("itemsList", accidents);
+        List<Accident> list = accidents.getAllAccidents();
+        System.out.println(list);
+        model.addAttribute("itemsList", list);
         return "index";
     }
 }
