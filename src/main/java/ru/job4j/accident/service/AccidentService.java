@@ -1,7 +1,10 @@
 package ru.job4j.accident.service;
 
-import org.springframework.stereotype.Service;
+import ru.job4j.accident.model.Accident;
 
-@Service
-public class AccidentService {
+import java.util.List;
+
+public interface AccidentService {
+
+    public List<Accident> getAllAccidents();
 }

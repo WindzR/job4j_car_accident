@@ -3,9 +3,7 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
@@ -18,32 +16,26 @@ public class AccidentMem {
     public AccidentMem() {
     }
 
-    public Map<Integer, Accident> getAccidents() {
-        return accidents;
-    }
-
-    public void setAccidents(Map<Integer, Accident> accidents) {
-        this.accidents = accidents;
+    public static AccidentMem of() {
+        AccidentMem accidentMem = new AccidentMem();
+        Accident collision = Accident.of(1, "Авария",
+                "статья 113, 189",
+                "Столкновение 2х легковых транспотных средств",
+                "Москва, Проспект Мира 112");
+        Accident overSpeed = Accident.of(2, "Превышение скоростного режима",
+                "статья 34",
+                "Превышение скоростного режима более чем на 20 км/ч",
+                "Москва, Ярославское шоссе, 13 км");
+        accidentMem.addAccident(collision);
+        accidentMem.addAccident(overSpeed);
+        return accidentMem;
     }
 
     public void addAccident(Accident accident) {
        accidents.put(count.incrementAndGet(), accident);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        AccidentMem that = (AccidentMem) o;
-        return Objects.equals(accidents, that.accidents);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(accidents);
+    public List<Accident> getAllAccidents() {
+        return new ArrayList<>(accidents.values());
     }
 }
