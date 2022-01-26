@@ -32,6 +32,10 @@ public class AccidentMem {
     }
 
     public void addAccident(Accident accident) {
+        if (accidents.containsKey(accident.getId())) {
+            accidents.replace(accident.getId(), accident);
+            return;
+        }
         accident.setId(count.getAndIncrement());
         accidents.put(accident.getId(), accident);
     }

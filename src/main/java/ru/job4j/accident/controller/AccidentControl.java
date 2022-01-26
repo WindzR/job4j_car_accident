@@ -25,11 +25,13 @@ public class AccidentControl {
         return "accident/create";
     }
 
-    @PostMapping("/edit")
-    public String edit(@RequestParam("accId") int id, Model model) {
+    @GetMapping("/update")
+    public String edit(@RequestParam("id") int id, Model model) {
+        System.out.println("****Working controller EDIT****");
         Accident accident = accidents.accidentById(id);
+        System.out.println(accident);
         model.addAttribute("accident", accident);
-        return "redirect:/index";
+        return "accident/update";
     }
 
     @PostMapping("/save")

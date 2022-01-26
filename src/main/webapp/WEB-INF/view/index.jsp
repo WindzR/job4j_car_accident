@@ -43,10 +43,6 @@
     <tbody>
 
     <c:forEach items="${itemsList}" var="item" varStatus="count">
-
-        <c:url var="updateButton" value='/edit'>
-            <c:param name="accId" value="${item.id}"/>
-        </c:url>
         
         <tr>
             <td><c:out value="${count.count}"/></td>
@@ -57,8 +53,13 @@
                 <c:out value="${item.address}"/>
             </td>
             <td>
+
                 <input type="button" value="Update"
-                       onclick="window.location.href = '${updateButton}'">
+                       onclick="<c:url value='/update?id=${item.id}'/> ">
+
+            <span>
+                <a href="<c:url value='/update?id=${item.id}'/>">Редактировать</a>
+            </span>
             </td>
         </tr>
     </c:forEach>
