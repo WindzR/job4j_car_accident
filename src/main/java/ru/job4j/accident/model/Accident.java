@@ -5,10 +5,16 @@ import java.util.Objects;
 public class Accident {
 
     private int id;
+
     private String name;
+
     private String article;
+
     private String text;
+
     private String address;
+
+    private AccidentType type;
 
     public Accident() {
     }
@@ -71,6 +77,14 @@ public class Accident {
         this.address = address;
     }
 
+    public AccidentType getType() {
+        return type;
+    }
+
+    public void setType(AccidentType type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -98,6 +112,7 @@ public class Accident {
                 + ", article='" + article + '\''
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
+                + ", accidentType='" + type + '\''
                 + '}';
     }
 }

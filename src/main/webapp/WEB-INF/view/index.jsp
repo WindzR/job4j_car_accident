@@ -37,6 +37,7 @@
         <th>Статья</th>
         <th>Описание</th>
         <th>Адрес</th>
+        <th>Тип происшествия</th>
         <th>Обновить/Удалить</th>
     </tr>
     </thead>
@@ -53,10 +54,9 @@
                 <c:out value="${item.address}"/>
             </td>
             <td>
-
-                <input type="button" value="Update"
-                       onclick="<c:url value='/update?id=${item.id}'/> ">
-
+                <c:out value="${item.type.name}"/>
+            </td>
+            <td>
             <span>
                 <a href="<c:url value='/update?id=${item.id}'/>">Редактировать</a>
             </span>
