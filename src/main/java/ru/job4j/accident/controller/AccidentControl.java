@@ -42,9 +42,8 @@ public class AccidentControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("accident") Accident accident) {
-        Accident accidentWithName = setAccidentTypeName(accident);
-        accidents.addAccident(accidentWithName);
-        System.out.println("Accident from form ----- " + accidentWithName);
+        accidents.addAccident(accident);
+        System.out.println("Accident from form ----- " + accident);
         List<Accident> accFromStorage = accidents.getAllAccidents();
         System.out.println("STORAGE from AccidentMem ----- " + accFromStorage);
         return "redirect:/index";
