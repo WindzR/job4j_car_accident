@@ -1,11 +1,28 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<html>
-<body>
+<!doctype html>
+<html lang="ru">
+<head>
+    <!-- Required meta tags -->
+<%--    <meta charset="utf-8">--%>
+<%--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
+    <!--Import Google Icon Font-->
+<%--    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">--%>
+    <!--Import materialize.css-->
+<%--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">--%>
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
+    <title>Accident</title>
+</head>
 
-<h3>Пожалуйста, отредактируйте данные о нарушении.</h3>
+<body>
+<h3 class="col s12 center-align">Редактирование данных об инценденте</h3>
 <br>
+<h5 class="col s12 center-align">Пожалуйста, отредактируйте данные о нарушении.</h5>
+<br>
+
+
+<br><br>
 
 <form  action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
 
@@ -45,5 +62,6 @@
         </tr>
     </table>
 </form>
+
 </body>
 </html>

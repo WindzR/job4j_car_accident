@@ -17,20 +17,23 @@
 
 <body class="container">
 <nav>
-    <div class="nav-wrapper container">
-        <a class="brand-logo">Accident</a>
+    <div class="nav-wrapper container light-blue darken-4">
+        <a class="brand-logo center-align">AccidentApp</a>
     </div>
 </nav>
 
-<h2>Нарушения</h2>
+<h2 class="col s12 center-align">Нарушения</h2>
 
 <br>
+<a href='<c:url value='/create'/>'>
+    <i class="material-icons">edit</i>
+</a>
 <a href="<c:url value='/create'/>">Добавить инцидент</a>
 <br>
 <br>
 
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="table-head light-blue">
     <tr>
         <th>#</th>
         <th>Нарушение</th>
@@ -41,7 +44,7 @@
         <th>Обновить/Удалить</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class="striped">
 
     <c:forEach items="${itemsList}" var="item" varStatus="count">
         
@@ -61,9 +64,12 @@
                 <c:out value="${item.type.name}"/>
             </td>
             <td>
-            <span>
-                <a href="<c:url value='/update?id=${item.id}'/>">Редактировать</a>
-            </span>
+                <a href='<c:url value="/update?id=${item.id}"/>'>
+                    <i class="material-icons">edit</i>
+                </a>
+                <a href='<c:url value="/delete?id=${item.id}"/>'>
+                    <i class="material-icons">delete</i>
+                </a>
             </td>
         </tr>
     </c:forEach>
