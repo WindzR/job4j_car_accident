@@ -48,7 +48,11 @@
         <tr>
             <td><c:out value="${count.count}"/></td>
             <td><c:out value="${item.name}"/></td>
-            <td><c:out value="${item.article}"/></td>
+            <td>
+                <c:forEach items="${item.rules}" var="rule">
+                    <c:out value="${rule.name}"/>
+                </c:forEach>
+            </td>
             <td><c:out value="${item.text}"/></td>
             <td>
                 <c:out value="${item.address}"/>

@@ -16,11 +16,6 @@
                 placeholder="name of accident"></td>
         </tr>
         <tr>
-            <td>Статья:</td>
-            <td><input type='text' name='article'
-                placeholder="articles"></td>
-        </tr>
-        <tr>
             <td>Описание:</td>
             <td><input type='text' name='text'
                 placeholder="description of accident"></td>
@@ -36,6 +31,15 @@
                 <select name="type.id">
                     <c:forEach var="type" items="${types}" >
                         <option value="<c:out value="${type.id}"/>"><c:out value="${type.name}"/></option>
+                    </c:forEach>
+                </select>
+        </tr>
+        <tr>
+            <td>Статьи:</td>
+            <td>
+                <select name="rIds" multiple>
+                    <c:forEach var="rule" items="${rules}" >
+                        <option value="<c:out value="${rule.id}"/>"><c:out value="${rule.name}"/></option>
                     </c:forEach>
                 </select>
         </tr>

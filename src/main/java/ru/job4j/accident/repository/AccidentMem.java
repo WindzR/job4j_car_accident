@@ -3,6 +3,7 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,17 +17,25 @@ public class AccidentMem {
 
     private final Map<Integer, AccidentType> types = new HashMap<>();
 
+    private final Map<Integer, Rule> rules = new HashMap<>();
+
     public AccidentMem() {
+        rules.put(1, Rule.of(1, "Статья. 1"));
+        rules.put(2, Rule.of(2, "Статья. 2"));
+        rules.put(3, Rule.of(3, "Статья. 3"));
+        Set<Rule> colRules = new HashSet<>();
+        colRules.add(rules.get(1));
+        colRules.add(rules.get(3));
+        Set<Rule> speedRules = new HashSet<>();
+        speedRules.add(rules.get(2));
         Accident collision = Accident.of(1, "Авария",
-                "статья 113, 189",
                 "Столкновение 2х легковых транспотных средств",
-                "Москва, Проспект Мира 112");
+                "Москва, Проспект Мира 112", colRules);
         AccidentType col = AccidentType.of(1, "Две машины");
         collision.setType(col);
         Accident overSpeed = Accident.of(2, "Превышение скоростного режима",
-                "статья 34",
                 "Превышение скоростного режима более чем на 20 км/ч",
-                "Москва, Ярославское шоссе, 13 км");
+                "Москва, Ярославское шоссе, 13 км", speedRules);
         AccidentType speed = AccidentType.of(4, "Одно транспортное средство");
         overSpeed.setType(speed);
         accidents.put(1, collision);
@@ -60,5 +69,9 @@ public class AccidentMem {
 
     public List<AccidentType> findAllAccidentType() {
         return new ArrayList<>(types.values());
+    }
+
+    public List<Rule> findAllRules() {
+        return new ArrayList<>(rules.values());
     }
 }

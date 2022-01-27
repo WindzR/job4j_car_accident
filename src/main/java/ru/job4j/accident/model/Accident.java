@@ -1,6 +1,8 @@
 package ru.job4j.accident.model;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
 
@@ -8,33 +10,37 @@ public class Accident {
 
     private String name;
 
-    private String article;
-
     private String text;
 
     private String address;
 
     private AccidentType type;
 
+    private Set<Rule> rules = new HashSet<>();
+
     public Accident() {
     }
 
-    public Accident(int id, String name, String article, String text, String address) {
+    public Accident(int id, String name, String text, String address, Set<Rule> rules) {
         this.id = id;
         this.name = name;
-        this.article = article;
         this.text = text;
         this.address = address;
+        this.rules = rules;
     }
 
-    public static Accident of(int id, String name, String article, String text, String address) {
+    public static Accident of(int id, String name, String text, String address, Set<Rule> rules) {
         Accident accident = new Accident();
         accident.id = id;
         accident.name = name;
-        accident.article = article;
         accident.text = text;
         accident.address = address;
+        accident.rules = rules;
         return accident;
+    }
+
+    public void addRule(Rule rule) {
+        rules.add(rule);
     }
 
     public int getId() {
@@ -51,14 +57,6 @@ public class Accident {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getArticle() {
-        return article;
-    }
-
-    public void setArticle(String article) {
-        this.article = article;
     }
 
     public String getText() {
@@ -85,6 +83,14 @@ public class Accident {
         this.type = type;
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -109,10 +115,10 @@ public class Accident {
         return "Accident{"
                 + "id=" + id
                 + ", name='" + name + '\''
-                + ", article='" + article + '\''
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
                 + ", accidentType='" + type + '\''
+                + ", rules='" + rules + '\''
                 + '}';
     }
 }

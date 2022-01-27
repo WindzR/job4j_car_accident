@@ -2,6 +2,7 @@ package ru.job4j.accident.service;
 
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface AccidentService {
     public Accident accidentById(int id);
 
     public List<AccidentType> allAccidentsTypes();
+
+    public List<Rule> findAllRules();
 }
