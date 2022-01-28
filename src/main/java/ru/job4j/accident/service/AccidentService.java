@@ -18,4 +18,6 @@ public interface AccidentService {
     public List<AccidentType> allAccidentsTypes();
 
     public List<Rule> findAllRules();
+
+    public Accident setRules(String[] ids, Accident accident);
 }

@@ -48,18 +48,9 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute("accident") Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
-        Accident accWithRules = setRules(ids, accident);
+        Accident accWithRules = accidents.setRules(ids, accident);
         accidents.addAccident(accWithRules);
         System.out.println("Accident from form ----- " + accWithRules);
         return "redirect:/index";
-    }
-
-    private Accident setRules(String[] ids, Accident accident) {
-        List<Rule> rules = accidents.findAllRules();
-        for (String ruleId : ids) {
-            Rule rule = rules.get(Integer.parseInt(ruleId) - 1);
-            accident.addRule(rule);
-        }
-        return accident;
     }
 }

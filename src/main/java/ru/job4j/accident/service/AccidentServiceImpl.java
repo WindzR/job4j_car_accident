@@ -40,4 +40,14 @@ public class AccidentServiceImpl implements AccidentService {
     public List<Rule> findAllRules() {
         return accidentMem.findAllRules();
     }
+
+    @Override
+    public Accident setRules(String[] ids, Accident accident) {
+        List<Rule> rules = accidentMem.findAllRules();
+        for (String ruleId : ids) {
+            Rule rule = rules.get(Integer.parseInt(ruleId) - 1);
+            accident.addRule(rule);
+        }
+        return accident;
+    }
 }
