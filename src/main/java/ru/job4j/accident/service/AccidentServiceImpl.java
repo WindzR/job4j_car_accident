@@ -4,15 +4,16 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 import ru.job4j.accident.repository.AccidentMem;
 import java.util.List;
 
 @Service
 public class AccidentServiceImpl implements AccidentService {
 
-    private AccidentMem accidentMem;
+    private AccidentJdbcTemplate accidentMem;
 
-    public AccidentServiceImpl(AccidentMem accidentMem) {
+    public AccidentServiceImpl(AccidentJdbcTemplate accidentMem) {
         this.accidentMem = accidentMem;
     }
 
