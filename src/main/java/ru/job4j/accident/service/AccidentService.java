@@ -4,7 +4,6 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
-import java.util.Collection;
 import java.util.List;
 
 public interface AccidentService {

@@ -8,7 +8,9 @@ import ru.job4j.accident.model.Rule;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/*
 @Repository
+ */
 public class AccidentMem {
 
     private final AtomicInteger count = new AtomicInteger(3);
