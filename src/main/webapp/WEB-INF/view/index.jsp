@@ -21,6 +21,11 @@
         <a class="brand-logo center-align">AccidentApp</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
+                <a href='<c:url value='/create'/>'>
+                    <i class="material-icons">edit</i>
+                </a>
+            </li>
+            <li>
                 <a href="<c:url value='/create'/>">Добавить инцидент</a>
             </li>
             <li>
@@ -31,11 +36,6 @@
 </nav>
 
 <h2 class="col s12 center-align">Нарушения</h2>
-
-<br>
-<a href='<c:url value='/create'/>'>
-    <i class="material-icons">edit</i>
-</a>
 <br>
 <br>
 
