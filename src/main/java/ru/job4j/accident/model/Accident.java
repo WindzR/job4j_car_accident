@@ -11,16 +11,13 @@ public class Accident {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "name")
     private String name;
 
     @Column(name = "description")
     private String text;
 
-    @Column(name = "address")
     private String address;
 
     @ManyToOne(cascade = {CascadeType.PERSIST,
