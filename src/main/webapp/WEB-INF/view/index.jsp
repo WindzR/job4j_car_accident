@@ -19,6 +19,14 @@
 <nav>
     <div class="nav-wrapper container light-blue darken-4">
         <a class="brand-logo center-align">AccidentApp</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a href="<c:url value='/create'/>">Добавить инцидент</a>
+            </li>
+            <li>
+                Пользователь: <c:out value="${user.username}"/>
+            </li>
+        </ul>
     </div>
 </nav>
 
@@ -28,7 +36,6 @@
 <a href='<c:url value='/create'/>'>
     <i class="material-icons">edit</i>
 </a>
-<a href="<c:url value='/create'/>">Добавить инцидент</a>
 <br>
 <br>
 
