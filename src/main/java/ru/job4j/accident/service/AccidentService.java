@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface AccidentService {
 
-    public List<Accident> getAllAccidents();
+    List<Accident> getAllAccidents();
 
-    public void addAccident(Accident accident);
+    void addAccident(Accident accident);
 
-    public Accident accidentById(int id);
+    Accident accidentById(Integer id);
 
-    public List<AccidentType> allAccidentsTypes();
+    List<AccidentType> allAccidentsTypes();
 
-    public List<Rule> findAllRules();
+    List<Rule> findAllRules();
 
-    public Accident setRules(String[] ids, Accident accident);
+    Accident setRules(String[] ids, Accident accident);
 }

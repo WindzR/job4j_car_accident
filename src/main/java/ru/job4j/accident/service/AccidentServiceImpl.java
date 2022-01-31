@@ -5,54 +5,76 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentRepository;
+import ru.job4j.accident.repository.AccidentTypeRepository;
+import ru.job4j.accident.repository.RuleRepository;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
 @Transactional(transactionManager = "htx")
  */
 @Service
-@Transactional(transactionManager = "htx")
+@Transactional(transactionManager = "transactionManager")
 public class AccidentServiceImpl implements AccidentService {
 
-    private final AccidentHibernate dao;
+    private final AccidentRepository accidentDAO;
 
-    public AccidentServiceImpl(AccidentHibernate dao) {
-        this.dao = dao;
+    private final AccidentTypeRepository accidentTypeDAO;
+
+    private final RuleRepository ruleDAO;
+
+    public AccidentServiceImpl(AccidentRepository accidentDAO,
+                               AccidentTypeRepository accidentTypeDAO,
+                               RuleRepository ruleDAO) {
+        this.accidentDAO = accidentDAO;
+        this.accidentTypeDAO = accidentTypeDAO;
+        this.ruleDAO = ruleDAO;
     }
 
-    @Override
     public List<Accident> getAllAccidents() {
-        return dao.getAllAccidents();
+        return accidentDAO.findAll();
     }
 
-    @Override
     public void addAccident(Accident accident) {
-        dao.addAccident(accident);
+        accidentDAO.save(accident);
     }
 
-    @Override
-    public Accident accidentById(int id) {
-        return dao.findAccidentById(id);
+    public Accident accidentById(Integer id) {
+        if (accidentDAO.findById(id).isPresent()) {
+            return accidentDAO.findById(id).get();
+        }
+        return defaultAccident();
     }
 
-    @Override
     public List<AccidentType> allAccidentsTypes() {
-        return dao.findAllAccidentType();
+        List<AccidentType> accidentTypes = new ArrayList<>();
+        accidentTypeDAO.findAll().forEach(accidentTypes::add);
+        return accidentTypes;
     }
 
-    @Override
     public List<Rule> findAllRules() {
-        return dao.findAllRules();
+        List<Rule> rules = new ArrayList<>();
+        ruleDAO.findAll().forEach(rules::add);
+        return rules;
     }
 
-    @Override
     public Accident setRules(String[] ids, Accident accident) {
-        List<Rule> rules = dao.findAllRules();
+        List<Rule> rules = findAllRules();
         for (String ruleId : ids) {
             Rule rule = rules.get(Integer.parseInt(ruleId) - 1);
             accident.addRule(rule);
         }
         return accident;
+    }
+
+    private Accident defaultAccident() {
+        Rule rule = Rule.of(0, "default");
+        Set<Rule> rules = new HashSet<Rule>();
+        rules.add(rule);
+        return new Accident(0, "default", "default", "default", rules);
     }
 }
