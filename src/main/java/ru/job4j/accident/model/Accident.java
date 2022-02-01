@@ -20,17 +20,11 @@ public class Accident {
 
     private String address;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST,
-                            CascadeType.DETACH,
-                            CascadeType.MERGE,
-                            CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "type_id")
     private AccidentType type;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST,
-                            CascadeType.DETACH,
-                            CascadeType.MERGE,
-                            CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(name = "accident_rules",
         joinColumns = @JoinColumn(name = "accident_id"),
         inverseJoinColumns = @JoinColumn(name = "rules_id"))

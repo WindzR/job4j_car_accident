@@ -49,8 +49,9 @@ public class AccidentControl {
     public String save(@ModelAttribute("accident") Accident accident, HttpServletRequest req) {
         String[] ids = req.getParameterValues("rIds");
         Accident accWithRules = accidents.setRules(ids, accident);
-        accidents.addAccident(accWithRules);
-        System.out.println("Accident from form ----- " + accWithRules);
+        Accident accWithType = accidents.setType(accWithRules);
+        accidents.addAccident(accWithType);
+        System.out.println("Accident from form ----- " + accWithType);
         return "redirect:/index";
     }
 }

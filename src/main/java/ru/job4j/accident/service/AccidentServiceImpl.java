@@ -15,10 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 /*
-@Transactional(transactionManager = "htx")
+@Transactional(transactionManager = "transactionManager")
  */
 @Service
-@Transactional(transactionManager = "transactionManager")
 public class AccidentServiceImpl implements AccidentService {
 
     private final AccidentRepository accidentDAO;
@@ -68,6 +67,13 @@ public class AccidentServiceImpl implements AccidentService {
             Rule rule = rules.get(Integer.parseInt(ruleId) - 1);
             accident.addRule(rule);
         }
+        return accident;
+    }
+
+    public Accident setType(Accident accident) {
+        List<AccidentType> types = allAccidentsTypes();
+        AccidentType newType = types.get(accident.getType().getId() - 1);
+        accident.setType(newType);
         return accident;
     }
 
