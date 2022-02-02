@@ -10,8 +10,6 @@ import ru.job4j.accident.model.User;
 import ru.job4j.accident.repository.AuthorityRepository;
 import ru.job4j.accident.repository.UserRepository;
 
-import java.util.List;
-
 @Controller
 public class RegControl {
 
@@ -46,7 +44,7 @@ public class RegControl {
     }
 
     private boolean containsUserNames(User user) {
-        List<User> userList = users.findByUsernameLike(user.getUsername());
-        return userList.size() != 0;
+        User rsl = users.findDistinctByUsernameLike(user.getUsername());
+        return rsl != null;
     }
 }
