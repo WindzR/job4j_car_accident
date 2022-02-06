@@ -2,6 +2,8 @@
 Проект "Автонарушители" [job4j](https://job4j.ru/).
 
 ![accident_1](images/accident_2.png)
+![accident_2](images/login.png)
+![accident_3](images/Registration.png)
 
 
 ### Этот проект представляет веб приложение для ведения учета новых правонарушений и отслеживание их приема/рассмотрения.
